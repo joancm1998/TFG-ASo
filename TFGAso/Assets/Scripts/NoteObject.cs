@@ -8,6 +8,8 @@ public class NoteObject : MonoBehaviour
 {
 
     public bool canBePressed;
+    public bool hasBeenPressed;
+    public Collider2D collidingNote = null;
 
     // Start is called before the first frame update
     void Start()
@@ -26,6 +28,7 @@ public class NoteObject : MonoBehaviour
         if(other.tag == "Activator")
         {
             this.canBePressed = true;
+            this.collidingNote = other;
         }
     }
 
@@ -34,20 +37,35 @@ public class NoteObject : MonoBehaviour
         if (other.tag == "Activator")
         {
             this.canBePressed = false;
+            this.collidingNote = null;
+            this.hasBeenPressed = false;
         }
     }
 
     public void pressNote()
     {
-        if (this.canBePressed)
+        if (this.canBePressed && !this.hasBeenPressed)
         {
             this.correctNote();
+        }
+        else
+        {
+            if(!this.canBePressed)
+            {
+                this.failNote();
+            }
         }
     }
 
     public void correctNote()
     {
-        gameObject.GetComponent<SpriteRenderer>().enabled = false;
+        this.hasBeenPressed = true;
+        this.collidingNote.GetComponent<SpriteRenderer>().enabled = false;
         GameManager.instance.correctNote();
+    }
+
+    public void failNote()
+    {
+        GameManager.instance.failNote();
     }
 }

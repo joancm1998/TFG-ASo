@@ -4,12 +4,15 @@ using UnityEngine;
 
 public class TileController : MonoBehaviour
 {
-    public GameObject note;
+    public GameObject referenceNote;
+
+    public void Start()
+    {
+
+    }
 
     public void pressNote()
     {
-
-        note.GetComponent<NoteObject>().pressNote();
-        
+        referenceNote.GetComponent<NoteObject>().pressNote();
     }
 }
