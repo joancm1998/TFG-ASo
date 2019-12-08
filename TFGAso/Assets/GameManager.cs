@@ -15,6 +15,12 @@ public class GameManager : MonoBehaviour
 
     public GameObject screenNotes;
 
+    private int doneNote = 0;
+
+    public GameObject pianoUI;
+    public GameObject scoreBarUI;
+    public GameObject completedLevelUI;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -29,6 +35,10 @@ public class GameManager : MonoBehaviour
         {
             totalNotes = screenNotes.transform.childCount;
         }
+
+        completedLevelUI.SetActive(false);
+        pianoUI.SetActive(true);
+        scoreBarUI.SetActive(true);
     }
 
     // Update is called once per frame
@@ -37,8 +47,20 @@ public class GameManager : MonoBehaviour
         
     }
 
+    public void didNote()
+    {
+        doneNote++;
+
+        if(doneNote == totalNotes)
+        {
+            finishLevel();
+        }
+    }
+
     public void correctNote()
     {
+
+
         currentScore += maxScore / totalNotes;
 
         if(currentScore>maxScore)
@@ -63,5 +85,34 @@ public class GameManager : MonoBehaviour
     public void updateScoreBar()
     {
         scoreBarContent.GetComponent<Image>().fillAmount = (currentScore / 100f);
+    }
+
+    public void finishLevel()
+    {
+        Debug.Log("Level finished with a total score of " + currentScore + "%. Congratulations!!");
+
+        completedLevelUI.SetActive(true);
+        completedLevelUI.GetComponent<LevelCompletedButtons>().printStars(getStarScore());
+        completedLevelUI.GetComponent<LevelCompletedButtons>().printNextLevelMask(getStarScore());
+
+        Debug.Log("stars to print :" + getStarScore());
+
+        pianoUI.SetActive(false);
+        scoreBarUI.SetActive(false);
+
+    }
+
+    public int getStarScore()
+    {
+        int numberOfStars = 0;
+        float auxScore = currentScore;
+
+        while( (auxScore - (maxScore/6f)) >= 0 )
+        {
+            auxScore = (auxScore - (maxScore / 6f));
+            numberOfStars++;
+        }
+
+        return numberOfStars;
     }
 }

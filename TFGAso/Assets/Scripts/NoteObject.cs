@@ -9,7 +9,7 @@ public class NoteObject : MonoBehaviour
 
     public bool canBePressed;
     public bool hasBeenPressed;
-    public Collider2D collidingNote = null;
+    private Collider2D collidingNote = null;
 
     // Start is called before the first frame update
     void Start()
@@ -62,6 +62,7 @@ public class NoteObject : MonoBehaviour
         this.hasBeenPressed = true;
         this.collidingNote.GetComponent<SpriteRenderer>().enabled = false;
         GameManager.instance.correctNote();
+        GameManager.instance.didNote();
     }
 
     public void failNote()
