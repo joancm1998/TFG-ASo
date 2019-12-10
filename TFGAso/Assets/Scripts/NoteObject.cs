@@ -36,6 +36,11 @@ public class NoteObject : MonoBehaviour
     {
         if (other.tag == "Activator")
         {
+            if(!this.hasBeenPressed)
+            {
+                this.missedNote();
+            }
+
             this.canBePressed = false;
             this.collidingNote = null;
             this.hasBeenPressed = false;
@@ -68,5 +73,12 @@ public class NoteObject : MonoBehaviour
     public void failNote()
     {
         GameManager.instance.failNote();
+    }
+
+    public void missedNote()
+    {
+        this.collidingNote.GetComponent<SpriteRenderer>().enabled = false;
+        GameManager.instance.failNote();
+        GameManager.instance.didNote();
     }
 }

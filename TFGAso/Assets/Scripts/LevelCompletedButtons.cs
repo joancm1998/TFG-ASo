@@ -51,7 +51,7 @@ public class LevelCompletedButtons : MonoBehaviour
 
     public void selectASong()
     {
-
+        SceneManager.LoadScene(2);
     }
 
 }

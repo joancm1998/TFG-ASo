@@ -51,3 +51,6 @@ TagManager:
   - name: Notes
     uniqueID: 1752710395
     locked: 0
+  - name: CanvasUI
+    uniqueID: 4082422597
+    locked: 0
