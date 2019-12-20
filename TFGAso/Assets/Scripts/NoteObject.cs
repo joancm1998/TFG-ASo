@@ -11,6 +11,9 @@ public class NoteObject : MonoBehaviour
     public bool hasBeenPressed;
     private Collider2D collidingNote = null;
 
+    //character
+    public GameObject character;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -68,6 +71,10 @@ public class NoteObject : MonoBehaviour
         this.collidingNote.GetComponent<SpriteRenderer>().enabled = false;
         GameManager.instance.correctNote();
         GameManager.instance.didNote();
+
+        //Debug.Log(new Vector3(0f, this.transform.position.y, 0f));
+        character.transform.position = new Vector3(character.transform.position.x, this.transform.position.y, character.transform.position.z);
+        //character.transform.Translate(new Vector3(0f, this.transform.position.y, 0f));
     }
 
     public void failNote()

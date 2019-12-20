@@ -18,9 +18,15 @@ EditorBuildSettings:
     path: Assets/Scenes/SongSelection.unity
     guid: cfdc0cdcbf6b5524b98aa9d918bf9d1c
   - enabled: 1
-    path: Assets/Scenes/Level1A.unity
+    path: Assets/Scenes/Song 1 - Tinc un gos/Level 1.unity
     guid: 6197c7a939e1406428918fee5a68617e
   - enabled: 1
-    path: Assets/Scenes/Level1B.unity
+    path: Assets/Scenes/Song 1 - Tinc un gos/Level 2.unity
     guid: 7c407f682902ce4439323c877995c33b
+  - enabled: 1
+    path: Assets/Scenes/Song 1 - Tinc un gos/Level 3.unity
+    guid: 2e860238f55852546826efa873cb1404
+  - enabled: 1
+    path: Assets/Scenes/Song 1 - Tinc un gos/Level 4.unity
+    guid: 9622f4b9eb49afd44a1f4233bc54b05e
   m_configObjects: {}

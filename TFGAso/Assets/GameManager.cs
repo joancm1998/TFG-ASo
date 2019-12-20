@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
+
 
 public class GameManager : MonoBehaviour
 {
@@ -26,8 +28,15 @@ public class GameManager : MonoBehaviour
     public GameObject scoreBarUI;
     public GameObject completedLevelUI;
 
+    //Clouds
+    public GameObject clouds;
+    public bool hasClouds = false;
+
     //Music
     public AudioSource song;
+
+    //Title init
+    public GameObject levelInformation;
 
     // Start is called before the first frame update
     void Start()
@@ -49,8 +58,13 @@ public class GameManager : MonoBehaviour
         pianoUI.SetActive(true);
         scoreBarUI.SetActive(true);
 
-        //song.Play();
-        //song.pitch = 0.5f
+        if(hasClouds)
+        {
+            clouds.SetActive(false);
+        }
+        
+        levelInformation.transform.GetChild(0).GetComponent<Text>().text = song.name.ToUpper();
+        levelInformation.transform.GetChild(1).GetComponent<Text>().text = SceneManager.GetActiveScene().name.ToUpper();
     }
 
     // Update is called once per frame
@@ -64,6 +78,14 @@ public class GameManager : MonoBehaviour
                 hasStarted = true;
                 screenNotes.GetComponent<NoteScroller>().hasStarted = true;
                 song.Play();
+
+                levelInformation.GetComponent<Animator>().enabled = true;
+
+                if(hasClouds)
+                {
+                    clouds.SetActive(true);
+                    clouds.GetComponent<Animator>().enabled = true;
+                }
             }
         }
     }
