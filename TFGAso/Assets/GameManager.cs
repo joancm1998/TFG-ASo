@@ -22,6 +22,8 @@ public class GameManager : MonoBehaviour
 
     private int doneNote = 0;
 
+    public GameObject character;
+    public bool hasCharacter;
 
     //Screens
     public GameObject pianoUI;
@@ -65,6 +67,8 @@ public class GameManager : MonoBehaviour
         
         levelInformation.transform.GetChild(0).GetComponent<Text>().text = song.name.ToUpper();
         levelInformation.transform.GetChild(1).GetComponent<Text>().text = SceneManager.GetActiveScene().name.ToUpper();
+
+        Debug.Log("Length of the song is: " + song.clip.length);
     }
 
     // Update is called once per frame
@@ -85,6 +89,11 @@ public class GameManager : MonoBehaviour
                 {
                     clouds.SetActive(true);
                     clouds.GetComponent<Animator>().enabled = true;
+                }
+
+                if(hasCharacter)
+                {
+                    character.GetComponent<CharacterMovement>().isActive = true;
                 }
             }
         }
