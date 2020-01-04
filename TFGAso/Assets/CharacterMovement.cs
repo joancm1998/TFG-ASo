@@ -4,48 +4,76 @@ using UnityEngine;
 
 public class CharacterMovement : MonoBehaviour
 {
-    float t;
+    float tX;
+    float tY;
     Vector3 startPosition;
-    Vector3 target;
+    Vector3 targetX;
+    Vector3 targetY;
     float timeToReachTarget;
 
     public bool isActive;
 
 
-    public GameObject destination;
+    public GameObject destinationX;
+    public GameObject destinationY;
+
+    float extraY;
 
     void Start()
     {
         isActive = false;
-        startPosition = target = transform.position;
-        setDestination(destination.transform.position, GameManager.instance.song.clip.length);
+        startPosition = targetX = transform.position;
+        setDestination(destinationX.transform.position, destinationY.transform.position, GameManager.instance.song.clip.length);
+        extraY = (targetY.y - targetX.y) / GameManager.instance.totalNotes;
+
     }
 
     void Update()
     {
         if(isActive)
         {
-            characterMove();
+            characterMoveX();
         }
     }
 
-    public void setDestination(Vector3 destination, float time)
+    public void setDestination(Vector3 destinationX, Vector3 destinationY, float time)
     {
-        t = 0;
+        tX = 0;
+        tY = 0;
         startPosition = transform.position;
         timeToReachTarget = time;
-        target = destination;
+        targetX = destinationX;
+        targetY = destinationY;
     }
 
-    public void characterMove()
+    public void characterMoveX()
     {
-        t += Time.deltaTime / timeToReachTarget;
+        tX += Time.deltaTime / timeToReachTarget;
         //startPosition += new Vector3(0f, 0.5f, 0f);
-        target += new Vector3(0f, 0.5f * Time.deltaTime, 0f);
-        transform.position = Vector3.Lerp(startPosition, target, t);
+        //targetX += new Vector3(0f, 0.5f * Time.deltaTime, 0f);
+        transform.position = Vector3.Lerp(startPosition, targetX, tX);
         Debug.Log("porision 1: " + transform.position);
         //transform.position += new Vector3(0f, 0.5f, 0f);
         Debug.Log("porision 2: " + transform.position);
+    }
+
+    public void characterMoveY(bool positive)
+    {
+        if (positive)
+        {
+            targetX += new Vector3(0f, extraY, 0f);
+            Debug.Log("Uno mas");
+        }
+        else
+        {
+            targetX -= new Vector3(0f, extraY, 0f);
+            Debug.Log("Uno menos");
+
+            if(targetX.y < destinationX.transform.position.y)
+            {
+                targetX.y = destinationX.transform.position.y;
+            }
+        }
     }
 
 }

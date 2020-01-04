@@ -74,12 +74,21 @@ public class NoteObject : MonoBehaviour
 
         //Debug.Log(new Vector3(0f, this.transform.position.y, 0f));
         character.transform.position = new Vector3(character.transform.position.x, this.transform.position.y, character.transform.position.z);
+
+        if(GameManager.instance.hasCharacter)
+        {
+            character.GetComponent<CharacterMovement>().characterMoveY(true);
+        }
         //character.transform.Translate(new Vector3(0f, this.transform.position.y, 0f));
     }
 
     public void failNote()
     {
         GameManager.instance.failNote();
+        if (GameManager.instance.hasCharacter)
+        {
+            character.GetComponent<CharacterMovement>().characterMoveY(false);
+        }
     }
 
     public void missedNote()
@@ -87,5 +96,9 @@ public class NoteObject : MonoBehaviour
         this.collidingNote.GetComponent<SpriteRenderer>().enabled = false;
         GameManager.instance.failNote();
         GameManager.instance.didNote();
+        if (GameManager.instance.hasCharacter)
+        {
+            character.GetComponent<CharacterMovement>().characterMoveY(false);
+        }
     }
 }
