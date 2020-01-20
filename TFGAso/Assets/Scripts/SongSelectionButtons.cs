@@ -21,12 +21,27 @@ public class SongSelectionButtons : MonoBehaviour
     public GameObject selectedSongUI;
 
 
+
+    public int level1Score;
+    public GameObject[] level1ScoreGO;
+    public int level2Score;
+    public GameObject[] level2ScoreGO;
+    public int level3Score;
+    public GameObject[] level3ScoreGO;
+    public int level4Score;
+    public GameObject[] level4ScoreGO;
+    public int level5Score;
+    public GameObject[] level5ScoreGO;
+
+
     // Start is called before the first frame update
     void Start()
     {
         instance = this;
         songSelectionUI.SetActive(true);
         selectedSongUI.SetActive(false);
+
+        resetInfo();
     }
 
     // Update is called once per frame
@@ -35,8 +50,11 @@ public class SongSelectionButtons : MonoBehaviour
         
     }
 
-    public void selectSong(int number, string name, int score)
+    public void selectSong(int number, string name, int score, int stars1, int stars2, int stars3, int stars4, int stars5)
     {
+
+        resetInfo();
+
         songNumberGO.GetComponent<Text>().text = number.ToString();
         songNameGO.GetComponent<Text>().text = name;
         songName = name;
@@ -45,6 +63,67 @@ public class SongSelectionButtons : MonoBehaviour
         {
             songScoreGO[i].GetComponent<Image>().color = new Color(255, 255, 255, 255);
         }
+
+
+        if (stars1 > 6)
+            stars1 = 6;
+
+        if (stars1 < 0)
+            stars1 = 0;
+
+        if (stars2 > 6)
+            stars2 = 6;
+
+        if (stars2 < 0)
+            stars2 = 0;
+
+        if (stars3 > 6)
+            stars3 = 6;
+
+        if (stars3 < 0)
+            stars3 = 0;
+
+        if (stars4 > 6)
+            stars4 = 6;
+
+        if (stars4 < 0)
+            stars4 = 0;
+
+        if (stars5 > 6)
+            stars5 = 6;
+
+        if (stars5 < 0)
+            stars5 = 0;
+
+        Debug.Log("This song has scores of: " + stars1 + stars2 + stars3 + stars4 + stars5);
+
+        for (int i = 0; i < stars1; i++)
+        {
+            level1ScoreGO[i].GetComponent<Image>().color = new Color(255, 255, 255, 255);
+        }
+
+        for (int i = 0; i < stars2; i++)
+        {
+            level2ScoreGO[i].GetComponent<Image>().color = new Color(255, 255, 255, 255);
+        }
+
+        for (int i = 0; i < stars3; i++)
+        {
+            level3ScoreGO[i].GetComponent<Image>().color = new Color(255, 255, 255, 255);
+        }
+
+        for (int i = 0; i < stars4; i++)
+        {
+            level4ScoreGO[i].GetComponent<Image>().color = new Color(255, 255, 255, 255);
+        }
+
+        for (int i = 0; i < stars5; i++)
+        {
+            level5ScoreGO[i].GetComponent<Image>().color = new Color(255, 255, 255, 255);
+        }
+
+
+
 
         difficulty = "EASY";
 
@@ -61,7 +140,50 @@ public class SongSelectionButtons : MonoBehaviour
 
     public void back()
     {
-        SceneManager.LoadScene(0);
+        if(selectedSongUI.activeInHierarchy)
+        {
+            songSelectionUI.SetActive(true);
+            selectedSongUI.SetActive(false);
+        }
+        else
+        {
+            SceneManager.LoadScene(0);
+        }
+            
         
+    }
+
+    public void resetInfo()
+    {
+
+        for (int i = 0; i < 6; i++)
+        {
+            songScoreGO[i].GetComponent<Image>().color = new Color(0, 0, 0, 255);
+        }
+
+        for (int i = 0; i < 6; i++)
+        {
+            level1ScoreGO[i].GetComponent<Image>().color = new Color(0, 0, 0, 255);
+        }
+
+        for (int i = 0; i < 6; i++)
+        {
+            level2ScoreGO[i].GetComponent<Image>().color = new Color(0, 0, 0, 255);
+        }
+
+        for (int i = 0; i < 6; i++)
+        {
+            level3ScoreGO[i].GetComponent<Image>().color = new Color(0, 0, 0, 255);
+        }
+
+        for (int i = 0; i < 6; i++)
+        {
+            level4ScoreGO[i].GetComponent<Image>().color = new Color(0, 0, 0, 255);
+        }
+
+        for (int i = 0; i < 6; i++)
+        {
+            level5ScoreGO[i].GetComponent<Image>().color = new Color(0, 0, 0, 255);
+        }
     }
 }

@@ -29,4 +29,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/EASY/TINC UN GOS/Level 4.unity
     guid: 9622f4b9eb49afd44a1f4233bc54b05e
+  - enabled: 1
+    path: Assets/Scenes/EASY/TINC UN GOS/Level 5.unity
+    guid: 3dae51130275c1e4d8057838ed8527ef
   m_configObjects: {}

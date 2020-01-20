@@ -13,6 +13,15 @@ public class LevelInformation : MonoBehaviour
     public int levelScore;
     public GameObject[] levelScoreGO;
 
+    public int levelScore1;
+    public int levelScore2;
+    public int levelScore3;
+    public int levelScore4;
+    public int levelScore5;
+
+
+
+
     // Start is called before the first frame update
     void Start()
     {
@@ -27,20 +36,33 @@ public class LevelInformation : MonoBehaviour
 
     public void printStars(int numberOfStars)
     {
+        //treat data
         if (numberOfStars > 6)
             numberOfStars = 6;
+
+        if (numberOfStars < 0)
+            numberOfStars = 0;
+
+        
 
         for (int i = 0; i < numberOfStars; i++)
         {
             levelScoreGO[i].GetComponent<Image>().color = new Color(255, 255, 255, 255);
         }
+
+
     }
 
-    public void setInformation(int number, string name, int score)
+    public void setInformation(int number, string name, int score1, int score2, int score3, int score4, int score5)
     {
         levelNumber = number;
         levelName = name;
-        levelScore = score;
+        levelScore = (score1 + score2 + score3 + score4 + score5)/5;
+        levelScore1 = score1;
+        levelScore2 = score2;
+        levelScore3 = score3;
+        levelScore4 = score4;
+        levelScore5 = score5;
         printInformation();
     }
 
@@ -53,7 +75,7 @@ public class LevelInformation : MonoBehaviour
 
     public void selectSong()
     {
-        SongSelectionButtons.instance.selectSong(levelNumber, levelName, levelScore);
+        SongSelectionButtons.instance.selectSong(levelNumber, levelName, levelScore, levelScore1, levelScore2, levelScore3, levelScore4, levelScore5);
         Debug.Log("Selected song: " + levelNumber + levelName + levelScore);
     }
 }
