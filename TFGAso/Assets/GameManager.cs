@@ -30,6 +30,8 @@ public class GameManager : MonoBehaviour
     public GameObject scoreBarUI;
     public GameObject completedLevelUI;
 
+    public GameObject pauseButton;
+
     //Clouds
     public GameObject clouds;
     public bool hasClouds = false;
@@ -56,6 +58,9 @@ public class GameManager : MonoBehaviour
             totalNotes = screenNotes.transform.childCount;
         }
 
+        levelInformation.transform.GetChild(0).GetComponent<Text>().text = song.name.ToUpper();
+        levelInformation.transform.GetChild(1).GetComponent<Text>().text = SceneManager.GetActiveScene().name.ToUpper();
+
         completedLevelUI.SetActive(false);
         pianoUI.SetActive(true);
         scoreBarUI.SetActive(true);
@@ -65,10 +70,11 @@ public class GameManager : MonoBehaviour
             clouds.SetActive(false);
         }
         
-        levelInformation.transform.GetChild(0).GetComponent<Text>().text = song.name.ToUpper();
-        levelInformation.transform.GetChild(1).GetComponent<Text>().text = SceneManager.GetActiveScene().name.ToUpper();
+        
 
         Debug.Log("Length of the song is: " + song.clip.length);
+
+        pauseButton.SetActive(false);
     }
 
     // Update is called once per frame
@@ -84,6 +90,8 @@ public class GameManager : MonoBehaviour
                 song.Play();
 
                 levelInformation.GetComponent<Animator>().enabled = true;
+
+                pauseButton.SetActive(true);
 
                 if(hasClouds)
                 {
@@ -103,6 +111,7 @@ public class GameManager : MonoBehaviour
     {
         doneNote++;
 
+        Debug.Log("hit notes: " + doneNote);
         if(doneNote == totalNotes)
         {
             finishLevel();
@@ -143,8 +152,21 @@ public class GameManager : MonoBehaviour
 
     public void finishLevel()
     {
+        if (SceneManager.GetActiveScene().name == "Presentation")
+        {
+            if (SceneToScene.targetScene > 0)
+            {
+                SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + SceneToScene.targetScene);
+            }
+            else
+            {
+                SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+            }
+        }
+
         Debug.Log("Level finished with a total score of " + currentScore + "%. Congratulations!!");
 
+        pauseButton.SetActive(false);
         completedLevelUI.SetActive(true);
         completedLevelUI.GetComponent<LevelCompletedButtons>().printStars(getStarScore());
         completedLevelUI.GetComponent<LevelCompletedButtons>().printNextLevelMask(getStarScore());
@@ -153,6 +175,8 @@ public class GameManager : MonoBehaviour
 
         pianoUI.SetActive(false);
         scoreBarUI.SetActive(false);
+
+        
 
     }
 

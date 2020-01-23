@@ -33,6 +33,7 @@ public class SongSelectionButtons : MonoBehaviour
     public int level5Score;
     public GameObject[] level5ScoreGO;
 
+    public GameObject[] levelButtons;
 
     // Start is called before the first frame update
     void Start()
@@ -54,6 +55,8 @@ public class SongSelectionButtons : MonoBehaviour
     {
 
         resetInfo();
+
+        
 
         songNumberGO.GetComponent<Text>().text = number.ToString();
         songNameGO.GetComponent<Text>().text = name;
@@ -102,9 +105,27 @@ public class SongSelectionButtons : MonoBehaviour
             level1ScoreGO[i].GetComponent<Image>().color = new Color(255, 255, 255, 255);
         }
 
+        if (stars1 < 3)
+        {
+            levelButtons[1].GetComponent<Button>().interactable = false;
+        }
+        else
+        {
+            levelButtons[1].GetComponent<Button>().interactable = true;
+        }
+
         for (int i = 0; i < stars2; i++)
         {
             level2ScoreGO[i].GetComponent<Image>().color = new Color(255, 255, 255, 255);
+        }
+
+        if (stars2 < 3)
+        {
+            levelButtons[2].GetComponent<Button>().interactable = false;
+        }
+        else
+        {
+            levelButtons[2].GetComponent<Button>().interactable = true;
         }
 
         for (int i = 0; i < stars3; i++)
@@ -112,9 +133,27 @@ public class SongSelectionButtons : MonoBehaviour
             level3ScoreGO[i].GetComponent<Image>().color = new Color(255, 255, 255, 255);
         }
 
+        if (stars3 < 3)
+        {
+            levelButtons[3].GetComponent<Button>().interactable = false;
+        }
+        else
+        {
+            levelButtons[3].GetComponent<Button>().interactable = true;
+        }
+
         for (int i = 0; i < stars4; i++)
         {
             level4ScoreGO[i].GetComponent<Image>().color = new Color(255, 255, 255, 255);
+        }
+
+        if (stars4 < 3)
+        {
+            levelButtons[4].GetComponent<Button>().interactable = false;
+        }
+        else
+        {
+            levelButtons[4].GetComponent<Button>().interactable = true;
         }
 
         for (int i = 0; i < stars5; i++)
@@ -123,24 +162,23 @@ public class SongSelectionButtons : MonoBehaviour
         }
 
 
-
-
         difficulty = "EASY";
 
         songSelectionUI.SetActive(false);
         selectedSongUI.SetActive(true);
     }
 
-    public void selectLevel(string level)
+    public void selectLevel(int level)
     {
         //SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
-        string levelName = "Scenes/" + difficulty + "/" + songName + "/" + level;
-        SceneManager.LoadScene(levelName);
+        //string levelName = "Scenes/" + difficulty + "/" + songName + "/" + level;
+        SceneToScene.targetScene = level;
+        SceneManager.LoadScene("Presentation");
     }
 
     public void back()
     {
-        if(selectedSongUI.activeInHierarchy)
+        if (selectedSongUI.activeInHierarchy)
         {
             songSelectionUI.SetActive(true);
             selectedSongUI.SetActive(false);

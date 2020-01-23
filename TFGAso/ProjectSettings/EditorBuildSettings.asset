@@ -18,6 +18,9 @@ EditorBuildSettings:
     path: Assets/Scenes/SongSelection.unity
     guid: cfdc0cdcbf6b5524b98aa9d918bf9d1c
   - enabled: 1
+    path: Assets/Scenes/EASY/TINC UN GOS/Presentation.unity
+    guid: dbcdf305781fbb14daf19e76e8c52bbf
+  - enabled: 1
     path: Assets/Scenes/EASY/TINC UN GOS/Level 1.unity
     guid: 6197c7a939e1406428918fee5a68617e
   - enabled: 1

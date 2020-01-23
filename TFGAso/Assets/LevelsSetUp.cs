@@ -11,7 +11,6 @@ public class LevelsSetUp : MonoBehaviour
     public GameObject[] levels;
 
     public TextAsset levelsInfo;
-    public TextAsset aux;
 
     public GameObject textAux;
 
