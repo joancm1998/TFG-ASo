@@ -176,7 +176,7 @@ public class GameManager : MonoBehaviour
         pianoUI.SetActive(false);
         scoreBarUI.SetActive(false);
 
-        
+        LoadSaveManager.instance.saveLevelScore(song.name.ToUpper(), int.Parse(SceneManager.GetActiveScene().name.Split(' ')[1]), getStarScore());
 
     }
 
@@ -198,4 +198,15 @@ public class GameManager : MonoBehaviour
 
         return numberOfStars;
     }
+
+    /*public void saveLevelScore(string song, int level, int points)
+    {
+        Debug.Log("try with " + song + level + points);
+        PlayerPrefs.SetInt(string.Concat(song, level.ToString()), points);
+    }
+
+    public int loadLevelScore(string song, int level)
+    {
+        return PlayerPrefs.GetInt(string.Concat(song, level.ToString()), 0);
+    }*/
 }

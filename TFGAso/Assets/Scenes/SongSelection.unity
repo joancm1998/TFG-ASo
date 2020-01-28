@@ -6130,6 +6130,49 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 765924479}
   m_CullTransparentMesh: 0
+--- !u!1 &773574884
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 773574886}
+  - component: {fileID: 773574885}
+  m_Layer: 0
+  m_Name: LoadSaveManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &773574885
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 773574884}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3756eed6eaef490489d643e894ffb18d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!4 &773574886
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 773574884}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 761.4433, y: 544.7106, z: 71.8404}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &776253349
 GameObject:
   m_ObjectHideFlags: 0
@@ -12083,7 +12126,7 @@ MonoBehaviour:
   - {fileID: 1264132445}
   - {fileID: 1340503251}
   - {fileID: 1893085281}
-  levelsInfo: {fileID: 4900000, guid: fa71a9ab6054bda4e9e4f2f2dd7ba339, type: 3}
+  levelsInfo: {fileID: 0}
   textAux: {fileID: 0}
 --- !u!1 &1670648315
 GameObject:

@@ -8,6 +8,8 @@ public class SceneToScene : MonoBehaviour
 
     public static int targetScene;
 
+    public static int songNumber;
+
     public void setTargetScene(int target)
     {
         targetScene = target;

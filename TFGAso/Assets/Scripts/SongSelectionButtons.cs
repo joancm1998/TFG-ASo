@@ -173,6 +173,7 @@ public class SongSelectionButtons : MonoBehaviour
         //SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
         //string levelName = "Scenes/" + difficulty + "/" + songName + "/" + level;
         SceneToScene.targetScene = level;
+        SceneToScene.songNumber = songNumber;
         SceneManager.LoadScene("Presentation");
     }
 
