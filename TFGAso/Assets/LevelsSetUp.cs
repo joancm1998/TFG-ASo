@@ -154,6 +154,11 @@ public class LevelsSetUp : MonoBehaviour
         int maxSongs = lines.Length;
         Debug.Log("Number of songs: " + maxSongs);
 
+        for (int i = 0; i < levels.Length; i++)
+        {
+            levels[i].SetActive(true);
+        }
+
 
         for (int i = 0; i < maxSongs; i++)
         {
@@ -174,12 +179,6 @@ public class LevelsSetUp : MonoBehaviour
 
             levels[i].GetComponent<LevelInformation>().setInformation(int.Parse(parts[0]), parts[1], int.Parse(levelScores[0]), int.Parse(levelScores[1]),
                 int.Parse(levelScores[2]), int.Parse(levelScores[3]), int.Parse(levelScores[4]));
-
-            
-            
-
-
-
         }
 
         for (int i = maxSongs; i < levels.Length; i++)

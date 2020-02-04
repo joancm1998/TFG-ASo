@@ -61,9 +61,16 @@ public class GameManager : MonoBehaviour
         levelInformation.transform.GetChild(0).GetComponent<Text>().text = song.name.ToUpper();
         levelInformation.transform.GetChild(1).GetComponent<Text>().text = SceneManager.GetActiveScene().name.ToUpper();
 
-        completedLevelUI.SetActive(false);
+        if (SceneManager.GetActiveScene().name != "Presentation")
+        {
+            completedLevelUI.SetActive(false);
+            scoreBarUI.SetActive(true);
+        }
+
+
+        
         pianoUI.SetActive(true);
-        scoreBarUI.SetActive(true);
+        
 
         if(hasClouds)
         {
@@ -154,23 +161,17 @@ public class GameManager : MonoBehaviour
     {
         /*if (SceneManager.GetActiveScene().name == "Presentation")
         {
-            if (SceneToScene.targetScene > 0)
-            {
-                SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + SceneToScene.targetScene);
-            }
-            else
-            {
-                SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
-            }
+            
         }*/
 
         pauseButton.SetActive(false);
-        completedLevelUI.SetActive(true);
         pianoUI.SetActive(false);
         
 
         if (SceneManager.GetActiveScene().name != "Presentation")
         {
+
+            completedLevelUI.SetActive(true);
             scoreBarUI.SetActive(false);
             Debug.Log("Level finished with a total score of " + currentScore + "%. Congratulations!!");
 
@@ -183,6 +184,17 @@ public class GameManager : MonoBehaviour
 
 
             LoadSaveManager.instance.saveLevelScore(song.name.ToUpper(), int.Parse(SceneManager.GetActiveScene().name.Split(' ')[1]), getStarScore());
+        }
+        else
+        {
+            if (SceneToScene.targetScene > 0)
+            {
+                SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + SceneToScene.targetScene);
+            }
+            else
+            {
+                SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+            }
         }
 
         
