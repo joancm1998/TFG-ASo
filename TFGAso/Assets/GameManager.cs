@@ -152,7 +152,7 @@ public class GameManager : MonoBehaviour
 
     public void finishLevel()
     {
-        if (SceneManager.GetActiveScene().name == "Presentation")
+        /*if (SceneManager.GetActiveScene().name == "Presentation")
         {
             if (SceneToScene.targetScene > 0)
             {
@@ -162,21 +162,30 @@ public class GameManager : MonoBehaviour
             {
                 SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
             }
-        }
-
-        Debug.Log("Level finished with a total score of " + currentScore + "%. Congratulations!!");
+        }*/
 
         pauseButton.SetActive(false);
         completedLevelUI.SetActive(true);
-        completedLevelUI.GetComponent<LevelCompletedButtons>().printStars(getStarScore());
-        completedLevelUI.GetComponent<LevelCompletedButtons>().printNextLevelMask(getStarScore());
-
-        Debug.Log("stars to print :" + getStarScore());
-
         pianoUI.SetActive(false);
-        scoreBarUI.SetActive(false);
+        
 
-        LoadSaveManager.instance.saveLevelScore(song.name.ToUpper(), int.Parse(SceneManager.GetActiveScene().name.Split(' ')[1]), getStarScore());
+        if (SceneManager.GetActiveScene().name != "Presentation")
+        {
+            scoreBarUI.SetActive(false);
+            Debug.Log("Level finished with a total score of " + currentScore + "%. Congratulations!!");
+
+
+            completedLevelUI.GetComponent<LevelCompletedButtons>().printStars(getStarScore());
+            completedLevelUI.GetComponent<LevelCompletedButtons>().printNextLevelMask(getStarScore());
+
+            Debug.Log("stars to print :" + getStarScore());
+
+
+
+            LoadSaveManager.instance.saveLevelScore(song.name.ToUpper(), int.Parse(SceneManager.GetActiveScene().name.Split(' ')[1]), getStarScore());
+        }
+
+        
 
     }
 

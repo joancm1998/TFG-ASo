@@ -14,12 +14,12 @@ public class LevelsSetUp : MonoBehaviour
 
     public TextAsset levelsInfo;
 
-    public GameObject textAux;
+    public GameObject groupTitle;
 
     // Start is called before the first frame update
     void Start()
     {
-        setLevelsInformationAndroid();
+        //setLevelsInformationAndroid();
     }
 
     // Update is called once per frame
@@ -140,11 +140,11 @@ public class LevelsSetUp : MonoBehaviour
         
     }
 
-    public void setLevelsInformationAndroid()
+    public void setLevelsInformationAndroid(string group)
     {
         //TextAsset textAsset = Resources.Load("LevelsInfo1") as TextAsset;
-        TextAsset textAsset = Resources.Load<TextAsset>("LevelsInfo1");
-
+        TextAsset textAsset = Resources.Load<TextAsset>(group);
+        groupTitle.GetComponent<Text>().text = group;
         /*string info = r.ReadToEnd();
         r.Close();*/
 

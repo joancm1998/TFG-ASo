@@ -35,6 +35,11 @@ public class SongSelectionButtons : MonoBehaviour
 
     public GameObject[] levelButtons;
 
+    public string[] groupsOfSongs;
+    public int currentGroup;
+    public int numberOfGroups;
+    public GameObject levels;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -42,7 +47,11 @@ public class SongSelectionButtons : MonoBehaviour
         songSelectionUI.SetActive(true);
         selectedSongUI.SetActive(false);
 
+
         resetInfo();
+
+        currentGroup = 0;
+        levels.GetComponent<LevelsSetUp>().setLevelsInformationAndroid(groupsOfSongs[currentGroup]);
     }
 
     // Update is called once per frame
@@ -223,6 +232,37 @@ public class SongSelectionButtons : MonoBehaviour
         for (int i = 0; i < 6; i++)
         {
             level5ScoreGO[i].GetComponent<Image>().color = new Color(0, 0, 0, 255);
+        }
+    }
+
+    public void changeGroup(bool next)
+    {
+        if(next)
+        {
+            currentGroup++;
+
+            if (currentGroup == numberOfGroups)
+            {
+                currentGroup = 0;
+            }
+
+            resetInfo();
+            levels.GetComponent<LevelsSetUp>().setLevelsInformationAndroid(groupsOfSongs[currentGroup]);
+        }
+        else
+        {
+
+            currentGroup--;
+
+            if(currentGroup < 0)
+            {
+                currentGroup = numberOfGroups - 1;
+            }
+
+            resetInfo();
+            levels.GetComponent<LevelsSetUp>().setLevelsInformationAndroid(groupsOfSongs[currentGroup]);
+           
+            
         }
     }
 }
