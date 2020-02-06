@@ -40,6 +40,8 @@ public class SongSelectionButtons : MonoBehaviour
     public int numberOfGroups;
     public GameObject levels;
 
+    public GameObject songsParent;
+
     // Start is called before the first frame update
     void Start()
     {

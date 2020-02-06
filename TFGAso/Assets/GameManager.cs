@@ -42,6 +42,11 @@ public class GameManager : MonoBehaviour
     //Title init
     public GameObject levelInformation;
 
+    //Note bar
+    public GameObject noteBar;
+    public bool hasNoteBar = false;
+
+
     // Start is called before the first frame update
     void Start()
     {
@@ -136,6 +141,12 @@ public class GameManager : MonoBehaviour
             currentScore = maxScore;
         }
         updateScoreBar();
+
+        if(hasNoteBar)
+        {
+            noteBar.GetComponent<Animator>().Play("NoteCorrect",-1,0);
+            //noteBar.GetComponent<SpriteRenderer>().color = new Color(0, 255, 0);
+        }
     }
 
     public void failNote()
@@ -150,6 +161,12 @@ public class GameManager : MonoBehaviour
         }
 
         updateScoreBar();
+        
+        if (hasNoteBar)
+        {
+            noteBar.GetComponent<Animator>().Play("NoteFail", -1, 0);
+            //noteBar.GetComponent<SpriteRenderer>().color = new Color(255, 0, 0);
+        }
     }
 
     public void updateScoreBar()
@@ -166,12 +183,13 @@ public class GameManager : MonoBehaviour
 
         pauseButton.SetActive(false);
         pianoUI.SetActive(false);
-        
+        completedLevelUI.SetActive(true);
+
 
         if (SceneManager.GetActiveScene().name != "Presentation")
         {
 
-            completedLevelUI.SetActive(true);
+            
             scoreBarUI.SetActive(false);
             Debug.Log("Level finished with a total score of " + currentScore + "%. Congratulations!!");
 
@@ -187,18 +205,15 @@ public class GameManager : MonoBehaviour
         }
         else
         {
-            if (SceneToScene.targetScene > 0)
+            /*if (SceneToScene.targetScene > 0)
             {
                 SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + SceneToScene.targetScene);
             }
             else
             {
                 SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
-            }
+            }*/
         }
-
-        
-
     }
 
     public int getStarScore()

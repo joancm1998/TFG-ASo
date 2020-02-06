@@ -41,7 +41,39 @@ public class LevelCompletedButtons : MonoBehaviour
 
     public void nextLevel()
     {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex +1);
+        if (SceneManager.GetActiveScene().name == "Presentation" && SceneToScene.targetScene > 0)
+        {
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + SceneToScene.targetScene);
+        }
+        else
+        {
+            Debug.Log("The current buildIndex is: " + SceneManager.GetActiveScene().buildIndex);
+            Debug.Log("The number is: " + SceneManager.sceneCountInBuildSettings);
+            if (SceneManager.GetActiveScene().buildIndex == SceneManager.sceneCountInBuildSettings - 1)
+            {
+                Debug.Log("This is the last scene");
+                SceneManager.LoadScene(0);
+            }
+            else
+            {
+                SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+            }
+        }
+        /*if (SceneManager.GetActiveScene().name != "Presentation")
+        {
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+        }
+        else
+        {
+            if (SceneToScene.targetScene > 0)
+            {
+                SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + SceneToScene.targetScene);
+            }
+            else
+            {
+                SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+            }
+        }*/
     }
 
     public void playAgain()

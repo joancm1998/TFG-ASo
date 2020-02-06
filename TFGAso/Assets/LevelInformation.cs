@@ -43,7 +43,10 @@ public class LevelInformation : MonoBehaviour
         if (numberOfStars < 0)
             numberOfStars = 0;
 
-        
+        for (int i = 0; i < 6; i++)
+        {
+            levelScoreGO[i].GetComponent<Image>().color = new Color(0, 0, 0, 255);
+        }
 
         for (int i = 0; i < numberOfStars; i++)
         {
